@@ -7,3 +7,7 @@ I preferred the .Net Core platform. The service application will run on Docker. 
 ```
 dotnet new webapi -o WeatherAPI
 ```
+This will create a project with necessory file. Weather API will return random weather forcasting as shown below.
+
+| ![images/api-result.png](images/api-result.png) |
+| ------------------------------------------------------------------- |
