@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-api
+spec:
+  selector:
+    matchLabels:
+      app: weather-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: weather-api
+    spec:
+      containers:
+        - name: weather-api
+          imagePullPolicy: Never
+          image: weather-api
+          resources:
+            limits:
+              memory: "50Mi"
+              cpu: "50m"
+            requests:
+              memory: "20Mi"
+              cpu: "20m"
+          ports:
+          - containerPort: 80
