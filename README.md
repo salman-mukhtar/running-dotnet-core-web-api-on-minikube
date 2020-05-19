@@ -103,7 +103,7 @@ kubectl get pods
 | ![images/get-deployments.png](images/get-deployments.png) |
 | ------------------------------------------------------------------- |
 
-If you look at the above image, after running the deployment we get an error for pods that is "ErrImageNewPull". The problem was that the minikube and the docker were not aware of each other. To overcome the problem, it is necessary to use the eval command and then re-create the docker image and redistribute it to the minikube. Of course, due to previous commands, there will probably be distributions that stop in the system. You have to delete them first. We can find the distribution package with the first command below and then delete it.
+If you look at the above image, after running the deployment we get an error for pods that is "ErrImageNeverPull". The problem was that the minikube and the docker were not aware of each other. To overcome the problem, it is necessary to use the eval command and then re-create the docker image and redistribute it to the minikube. Of course, due to previous commands, there will probably be distributions that stop in the system. You have to delete them first. We can find the distribution package with the first command below and then delete it.
 
 ```
 kubectl delete deployment weather-api
