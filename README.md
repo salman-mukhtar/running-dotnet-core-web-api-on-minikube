@@ -9,7 +9,7 @@
 
 **Setting up .Net Core Web API**
 
-We can start with a .net core web api as an example. The service application will run on Docker. To create it, we can proceed with the terminal command below.
+We can start with a .net core web api as an example. The application will run on Docker. To create it, we can proceed with the terminal command below.
 
 ```
 dotnet new webapi -o WeatherAPI
