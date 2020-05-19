@@ -2,9 +2,10 @@
 
 **Prerequisite**
 
-* Linux machine with Minikube
+* Linux machine with Minikube ([Install Minikube](https://github.com/salman-mukhtar/setting-up-kubernetes-environment/blob/master/README.md)
 * Visual studio code
 * Docker
+* Kubectl
 
 **Setting up .Net Core Web API**
 
@@ -23,3 +24,4 @@ Weather API will return random weather forcasting as shown below.
 
 | ![images/api-result.png](images/api-result.png) |
 | ------------------------------------------------------------------- |
+
