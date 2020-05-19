@@ -151,7 +151,12 @@ After the service is exposed, get the url for the running service
 minikube service weather-api --url
 ```
 
+| ![images/service-url.png](images/service-url.png) |
+| ------------------------------------------------------------------- |
 
+I am using postman to test the service. If you copy the link from above command and paste it in postman, you will see the result. Our containerized web api is running successfully.
 
+| ![images/postman.png](images/postman.png) |
+| ------------------------------------------------------------------- |
 
 
