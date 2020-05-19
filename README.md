@@ -134,7 +134,7 @@ kubectl get deployments
 kubectl get pods
 ```
 
-| ![images/create-deployments.png](images/create-deployments.png) |
+| ![images/create-deployment.png](images/create-deployment.png) |
 | ------------------------------------------------------------------- |
 
 **Testing out deployment**
