@@ -96,12 +96,6 @@ We can perform these operations with the following terminal commands. Before sta
 
 ```
 kubectl create -f deployment.yaml
-```
-
-| ![images/create-deployment.png](images/create-deployment.png) |
-| ------------------------------------------------------------------- |
-
-```
 kubectl get deployments
 kubectl get pods
 ```
