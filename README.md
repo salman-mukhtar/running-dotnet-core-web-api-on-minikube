@@ -55,6 +55,8 @@ docker build -t weather-api .
 | ![images/dockerbuild.png](images/dockerbuild.png) |
 | ------------------------------------------------------------------- |
 
+After the Docker image is ready, the required distribution process can be started for the minikube. In this note, we use the kubectl command line tool. kubectl will perform a deployment process using the contents of the deployment.yaml file. 
+
 **Minikube Deployment Preparations**
 
 First of all we create a deployment file to run our pods on Minikube. The deployment file will look as follows.
@@ -89,14 +91,13 @@ spec:
           - containerPort: 80
 ```
 
-After the Docker image is ready, the required distribution process can be started for the minikube. In this note, we use the kubectl command line tool. kubectl will perform a deployment process using the contents of the deployment.yaml file. We can perform these operations with the following terminal commands. Before starting these operations, I would like to remind you that minikube service must be running.
+We can perform these operations with the following terminal commands. Before starting these operations, I would like to remind you that minikube service must be running. Now we apply our deployment.
 
-Now we apply our deployment.
 ```
 kubectl create -f deployment.yaml
 ```
 
-| ![images/deployment.png](images/deployment.png) |
+| ![images/create-deployment.png](images/create-deployment.png) |
 | ------------------------------------------------------------------- |
 
 ```
@@ -106,3 +107,51 @@ kubectl get pods
 
 | ![images/get-deployments.png](images/get-deployments.png) |
 | ------------------------------------------------------------------- |
+
+If you look at the above image, after running the deployment we get an error for pods that is "ErrImageNewPull". The problem was that the minikube and the docker were not aware of each other. To overcome the problem, it is necessary to use the eval command and then re-create the docker image and redistribute it to the minikube. Of course, due to previous commands, there will probably be distributions that stop in the system. You have to delete them first. We can find the distribution package with the first command below and then delete it.
+
+```
+kubectl delete deployment weather-api
+```
+
+After the cleaning is completed, we can proceed with the following commands. The first command provides the setting of the local environment parameters necessary to run the docker in the minikube instance. 
+
+```
+eval $(minikube docker-env)
+```
+
+Afterwards are about creating the image of the docker and distributing it to the minikube environment.
+
+```
+docker build -t weather-api .
+kubectl create -f deployment.yaml
+```
+
+Check the deployment and pods again.
+
+```
+kubectl get deployments
+kubectl get pods
+```
+
+| ![images/create-deployments.png](images/create-deployments.png) |
+| ------------------------------------------------------------------- |
+
+**Testing out deployment**
+
+As you can see our dockerized service currently live in the Minikube environment. Now we expose the deployment as NodePort to it to be accessed.
+
+```
+kubectl expose deployment weather-api --type=NodePort
+```
+
+After the service is exposed, get the url for the running service
+
+```
+minikube service weather-api --url
+```
+
+
+
+
+
