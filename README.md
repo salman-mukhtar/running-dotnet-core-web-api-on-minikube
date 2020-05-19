@@ -25,6 +25,8 @@ Weather API will return random weather forcasting as shown below.
 | ![images/api-result.png](images/api-result.png) |
 | ------------------------------------------------------------------- |
 
+**Docker Preparations**
+
 To dockerize the Web API application, we need the Dockerfile file, as you are familiar with, that we can encode it as follows.
 
 ```
@@ -45,7 +47,6 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "WeatherAPI.dll"]
 ```
-**Docker Preparations**
 
 After completing the dockerfile file, the web API application can be started to dockerize. After all, Minikube's main task is to provide orchestration of dockerized samples. For dockerize process, it will be enough to use the build command as follows.
 
