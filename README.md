@@ -115,7 +115,7 @@ After the cleaning is completed, we can proceed with the following commands. The
 eval $(minikube docker-env)
 ```
 
-Let's try to build the docker image again and distribute it to the minikube environment one more time.
+Let's try to build the docker image and distribute it to the minikube environment one more time.
 
 ```
 docker build -t weather-api .
@@ -131,6 +131,8 @@ kubectl get pods
 
 | ![images/create-deployment.png](images/create-deployment.png) |
 | ------------------------------------------------------------------- |
+
+As you can see above our pods are up and running this time.
 
 **Testing out deployment**
 
