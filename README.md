@@ -115,7 +115,7 @@ After the cleaning is completed, we can proceed with the following commands. The
 eval $(minikube docker-env)
 ```
 
-Afterwards are about creating the image of the docker and distributing it to the minikube environment.
+Let's try to build the docker image again and distribute it to the minikube environment one more time.
 
 ```
 docker build -t weather-api .
@@ -154,4 +154,4 @@ I am using postman to test the service. If you copy the link from above command 
 | ![images/postman.png](images/postman.png) |
 | ------------------------------------------------------------------- |
 
-
+That' it. Our weather api is up and running.
