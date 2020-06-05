@@ -9,7 +9,7 @@
 
 **Setting up .Net Core Web API**
 
-We can start with a .net core web api as an example. The service application will run on Docker. To create it, we can proceed with the terminal command below.
+We can start with a .net core web api as an example. The application will run on Docker. To create it, we can proceed with the terminal command below.
 
 ```
 dotnet new webapi -o WeatherAPI
@@ -24,6 +24,8 @@ Weather API will return random weather forcasting as shown below.
 
 | ![images/api-result.png](images/api-result.png) |
 | ------------------------------------------------------------------- |
+
+**Docker Preparations**
 
 To dockerize the Web API application, we need the Dockerfile file, as you are familiar with, that we can encode it as follows.
 
@@ -45,7 +47,6 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "WeatherAPI.dll"]
 ```
-**Docker Preparations**
 
 After completing the dockerfile file, the web API application can be started to dockerize. After all, Minikube's main task is to provide orchestration of dockerized samples. For dockerize process, it will be enough to use the build command as follows.
 
@@ -95,12 +96,6 @@ We can perform these operations with the following terminal commands. Before sta
 
 ```
 kubectl create -f deployment.yaml
-```
-
-| ![images/create-deployment.png](images/create-deployment.png) |
-| ------------------------------------------------------------------- |
-
-```
 kubectl get deployments
 kubectl get pods
 ```
@@ -108,7 +103,7 @@ kubectl get pods
 | ![images/get-deployments.png](images/get-deployments.png) |
 | ------------------------------------------------------------------- |
 
-If you look at the above image, after running the deployment we get an error for pods that is "ErrImageNewPull". The problem was that the minikube and the docker were not aware of each other. To overcome the problem, it is necessary to use the eval command and then re-create the docker image and redistribute it to the minikube. Of course, due to previous commands, there will probably be distributions that stop in the system. You have to delete them first. We can find the distribution package with the first command below and then delete it.
+If you look at the above image, after running the deployment we get an error for pods that is "ErrImageNeverPull". The problem was that the minikube and the docker were not aware of each other. To overcome the problem, it is necessary to use the eval command and then re-create the docker image and redistribute it to the minikube. Of course, due to previous commands, there will probably be distributions that stop in the system. You have to delete them first. We can find the distribution package with the first command below and then delete it.
 
 ```
 kubectl delete deployment weather-api
@@ -120,7 +115,7 @@ After the cleaning is completed, we can proceed with the following commands. The
 eval $(minikube docker-env)
 ```
 
-Afterwards are about creating the image of the docker and distributing it to the minikube environment.
+Let's try to build the docker image and distribute it to the minikube environment one more time.
 
 ```
 docker build -t weather-api .
@@ -136,6 +131,8 @@ kubectl get pods
 
 | ![images/create-deployment.png](images/create-deployment.png) |
 | ------------------------------------------------------------------- |
+
+As you can see above our pods are up and running this time.
 
 **Testing out deployment**
 
@@ -159,4 +156,4 @@ I am using postman to test the service. If you copy the link from above command 
 | ![images/postman.png](images/postman.png) |
 | ------------------------------------------------------------------- |
 
-
+That' it. Our weather api is up and running.
